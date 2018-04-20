@@ -93,4 +93,4 @@ function GetData(): Product[] {
     return data.products;
 }
 
-export { GetData };
+export default { GetData };
