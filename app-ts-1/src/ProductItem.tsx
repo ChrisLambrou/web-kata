@@ -7,7 +7,12 @@ interface ProductItemProps {
 
 class ProductItem extends React.Component<ProductItemProps, {}> {
     render() {
-        return <div>{this.props.product.name} - {this.props.product.description}</div>;
+
+        let product = this.props.product;
+
+        let freeMarker = product.free && (<span>(Free)</span>);
+        let newMarker = product.new && (<span>(New)</span>);
+        return <div>{product.name} - {product.description} {freeMarker} {newMarker}</div>;
     }
 }
 
