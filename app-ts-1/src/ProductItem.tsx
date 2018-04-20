@@ -13,7 +13,7 @@ class ProductItem extends React.Component<ProductItemProps, {}> {
 
         let freeMarker = product.free && (<span className='marker'>Free</span>);
         let newMarker = product.new && (<span className='marker'>New</span>);
-        return <div className='li-item'>{product.name} - {product.description} {freeMarker} {newMarker}</div>;
+        return <div className='li-item'>{product.name} {freeMarker} {newMarker} - {product.description} </div>;
     }
 }
 
