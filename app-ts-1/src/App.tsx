@@ -4,13 +4,26 @@ import './App.css';
 import { GetData } from './data';
 import { Product } from './Models/Product';
 
+interface ProductListProps {
+    products: Product[];
+}
+
+class ProductList extends Component<ProductListProps> {
+    render() {
+        const listItems = this.props.products.map((d) =>
+            <li key={d.name}>{d.name} {d.description}</li>
+        );
+        return <ul>{listItems}</ul>;
+    }
+}
+
 class App extends Component {
 
     render(): JSX.Element {
         const data: Product[] = GetData();
-        const listItems = data.map((d) =>
-            <li key={d.name}>{d.name} {d.description}</li>
-        );
+        // const listItems = data.map((d) =>
+        //     <li key={d.name}>{d.name} {d.description}</li>
+        // );
         return (
             <div className='App'>
 
@@ -22,7 +35,7 @@ class App extends Component {
                 </p>
                 <div className='products'>
                     ... your code here
-                    <ul>{listItems}</ul>
+                    <ProductList products={data} />
                 </div>
             </div>);
     }
