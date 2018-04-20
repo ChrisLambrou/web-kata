@@ -1,0 +1,13 @@
+.marker {
+    font-weight: bold;
+    background-color: darkseagreen;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    padding: 5px;
+    font-size: small;
+}
+
+.li-item {
+    padding: 5px 0px;
+}
