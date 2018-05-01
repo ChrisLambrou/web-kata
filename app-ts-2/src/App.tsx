@@ -20,15 +20,54 @@ class App extends Component<{}, AppState> {
       newProductName: '',
       newProductDescription: ''
     };
+    this.onNameChange = this.onNameChange.bind(this);
+    this.onDescriptionChange = this.onDescriptionChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onNameChange(event: React.FormEvent<HTMLInputElement>): void {
+    this.setState(prevState => ({
+      ...prevState,
+      newProductName: event.currentTarget.value
+    }));
   }
   
+  onDescriptionChange(event: React.FormEvent<HTMLInputElement>): void {
+    this.setState(prevState => ({
+      ...prevState,
+      newProductDescription: event.currentTarget.value
+    }));
+  }
+  
+  onSubmit(event: React.FormEvent<HTMLButtonElement>): void {
+    event.preventDefault();
+    let newProduct: Product = {
+      name: this.state.newProductName,
+      description: this.state.newProductDescription
+    };
+    this.setState(prevState => ({
+      products: [...prevState.products, newProduct],
+      newProductName: '',
+      newProductDescription: ''
+    }));
+  }
+
   render(): JSX.Element {
     return (
       <div className='App'>
         <div className='App-header'>
           <h2>Kata 2- Add and remove objects</h2>
         </div>
-        <div className='add-product'>View to add product here...</div>
+        <div className='add-product'>
+          <form>
+          <h2>Create new product</h2>
+          <label>Name: </label>
+            <input type='text' value={this.state.newProductName} onChange={this.onNameChange}/>
+            <label> Description: </label>
+            <input type='text' value={this.state.newProductDescription} onChange={this.onDescriptionChange}/>
+            <button onClick={this.onSubmit}>Create</button>
+          </form>
+        </div>
         <div className='products-container'>
           <ProductList products={this.state.products} />
         </div>
