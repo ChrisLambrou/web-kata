@@ -2,11 +2,26 @@ import * as React from 'react';
 import { Component } from 'react';
 import './App.css';
 import ProductList from './ProductList';
+import { Product } from './Models/Product';
 import { GetData } from './data';
 
-const products = GetData();
+interface AppState {
+  products: Product[];
+  newProductName: string;
+  newProductDescription: string;
+}
 
-class App extends Component {
+class App extends Component<{}, AppState> {
+
+  constructor(props: {}) {
+    super(props);
+    this.state = {
+      products: GetData(),
+      newProductName: '',
+      newProductDescription: ''
+    };
+  }
+  
   render(): JSX.Element {
     return (
       <div className='App'>
@@ -15,7 +30,7 @@ class App extends Component {
         </div>
         <div className='add-product'>View to add product here...</div>
         <div className='products-container'>
-          <ProductList products={products} />
+          <ProductList products={this.state.products} />
         </div>
       </div>);
   }
